@@ -104,7 +104,7 @@ class _MyThreeLayerScreenState extends State<MyThreeLayerScreen> {
                   Row(
                     children: [
                       IconButton(
-                        icon: Image.asset('assets/images/search.png'), // 아이콘1의 이미지
+                        icon: Image.asset('assets/images/search.png'), // 아이콘1의 이미자
                         onPressed: () {
                           Navigator.push(
                             context,
