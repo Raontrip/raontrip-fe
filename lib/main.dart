@@ -1,10 +1,11 @@
+import 'dart:js';
 import 'package:flutter/material.dart';
-import 'search.dart'; // search.dart 파일을 임포트합니다.
-import 'info.dart';
-//import 'package:flutter_kakao_map/flutter_kakao_map.dart';
-//import 'package:flutter_kakao_map/kakao_maps_flutter_platform_interface.dart';
+import 'package:raon_trip/page2.dart';
+import 'package:raon_trip/info.dart';
+import 'main.dart';
 
 // 내국인 인기 지역 리스트
+// 이미지 받아오기
 final List<String> imagePaths = [
   'assets/images/everland.png',
   'assets/images/jongro.png',
@@ -13,15 +14,17 @@ final List<String> imagePaths = [
   'assets/images/everland.png',
 ];
 
+// 지역 이름 받아오기
 final List<String> regionNames = [
   '#경기도 용인시',
   '#서울특별시 종로구',
-  '#3',
+  '#울산광역시 북구 강동동',
   '#4',
   '#5',
 ];
 
 // 외국인 인기 지역 리스트
+// 이미지 받아오기
 final List<String> imagePathsf = [
   'assets/images/everland.png',
   'assets/images/jongro.png',
@@ -30,320 +33,379 @@ final List<String> imagePathsf = [
   'assets/images/everland.png',
 ];
 
+// 지역 이름 받아오기
 final List<String> regionNamesf = [
-  '#경기도 용인시',
-  '#서울특별시 종로구',
+  '#경기도 수원시',
+  '#서울특별시 마포구',
   '#3',
   '#4',
   '#5',
 ];
 
-class MyThreeLayerScreen extends StatefulWidget {
-  @override
-  _MyThreeLayerScreenState createState() => _MyThreeLayerScreenState();
-}
-
-class _MyThreeLayerScreenState extends State<MyThreeLayerScreen> {
-  Future<bool> _onWillPop() async {
-    return (await showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Align(
-          alignment: AlignmentDirectional.topEnd,
-          child: IconButton(
-            icon: Image.asset('assets/images/close.png'), // 종료 아이콘
-            onPressed: () => Navigator.of(context).pop(false),
-          ),
-        ),
-
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Container(
-              height: 200, // Adjust the height of the photo container
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/images/ads.jpg'), // 광고 사진
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-            SizedBox(height: 16.0),
-            Text('라온트립을 종료하시겠습니까?', style: TextStyle(fontSize: 16, fontFamily: 'Nanum', fontWeight: FontWeight.w700),),
-          ],
-        ),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(true),
-            child: Text('종료', style: TextStyle(fontSize: 16, fontFamily: 'Nanum', fontWeight: FontWeight.w700),),
-          ),
-        ],
-      ),
-    )) ??
-        false;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: _onWillPop,
-      child: Scaffold(
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // 첫 번째 레이어: 타이틀과 아이콘
-            Padding(
-              padding: EdgeInsets.only(left: 25.0, top: 25.0, right: 25.0, bottom: 0.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    '라온트립',
-                    style: TextStyle(fontSize: 26, fontFamily: 'Nanum', fontWeight: FontWeight.w800),
-                  ),
-                  Row(
-                    children: [
-                      IconButton(
-                        icon: Image.asset('assets/images/search.png'), // 아이콘1의 이미자
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => SearchPage()),
-                          );
-                        },
-                      ),
-                      IconButton(
-                        icon: Image.asset('assets/images/menu.png'), // 아이콘2 이미지
-                        onPressed: () {
-                          // 메뉴로 이동
-                        },
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-
-            // 두 번째 레이어: 외국인 인기 지역
-            Padding(
-              padding: EdgeInsets.only(left: 25.0, top: 25.0, right: 0.0, bottom: 0.0),
-              child: Text(
-                '외국인 인기 지역',
-                style: TextStyle(fontSize: 20, fontFamily: 'Nanum', fontWeight: FontWeight.w800),
-              ),
-            ),
-            // 외국인 인기 지역에 대한 가로 스크롤 가능한 사진들
-            Container(
-              height: 215, // height as needed
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: imagePaths.length, // number of photos
-                itemBuilder: (context, index) {
-                  return InkWell(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => InfoPage()),
-                      );
-                    },
-                    child: Container(
-                      width: 215, // width as needed
-                      margin: EdgeInsets.only(left: 25.0, top: 16.0, right: 0.0, bottom: 0.0),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8.0), // round the image
-                        image: DecorationImage(
-                          image: AssetImage(imagePaths[index]), // use the image from the list
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8.0),
-                          color: Colors.white.withOpacity(0.6),
-                        ),
-                        child: Center(
-                          child: Text(
-                            regionNames[index], // use the region name from the list
-                            style: TextStyle(fontSize: 18, fontFamily: 'Nanum', fontWeight: FontWeight.w800),
-                          ),
-                        ),
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
-
-            // 세 번째 레이어: 내국인 인기 지역
-            Padding(
-              padding: EdgeInsets.only(left: 25.0, top: 80.0, right: 0.0, bottom: 0.0),
-              child: Text(
-                '내국인 인기 지역',
-                style: TextStyle(fontSize: 20, fontFamily: 'Nanum', fontWeight: FontWeight.w800),
-              ),
-            ),
-            SizedBox(height: 8.0),
-
-            // 내국인 인기 명소에 대한 가로 스크롤 가능한 사진들
-            Container(
-              height: 215, // height as needed
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: imagePathsf.length, // number of photos
-                itemBuilder: (context, index) {
-                  return InkWell(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => InfoPage()),
-                      );
-                    },
-                    child: Container(
-                      width: 215, // width as needed
-                      margin: EdgeInsets.only(left: 25.0, top: 16.0, right: 0.0, bottom: 0.0),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8.0), // round the image
-                        image: DecorationImage(
-                          image: AssetImage(imagePathsf[index]), // use the image from the list
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8.0),
-                          color: Colors.white.withOpacity(0.6),
-                        ),
-                        child: Center(
-                          child: Text(
-                            regionNamesf[index], // use the region name from the list
-                            style: TextStyle(fontSize: 18, fontFamily: 'Nanum', fontWeight: FontWeight.w800),
-                          ),
-                        ),
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
 void main() {
-  runApp(MaterialApp(
-    home: MyThreeLayerScreen(),
-  ));
+  runApp(const MainPage());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MainPage extends StatelessWidget {
+  const MainPage({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
+      theme: ThemeData.dark().copyWith(
+        scaffoldBackgroundColor: const Color.fromARGB(255, 18, 32, 47),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: Scaffold(
+        body: Iphone1313Pro1(),
+      ),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
+class Iphone1313Pro1 extends StatefulWidget {
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  _Iphone1313Pro1State createState() => _Iphone1313Pro1State();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+class _Iphone1313Pro1State extends State<Iphone1313Pro1> {
+  bool isPopupVisible = true;
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+    return Column(
+      children: [
+        Container(
+          width: 390,
+          height: 844,
+          clipBehavior: Clip.antiAlias,
+          decoration: BoxDecoration(color: Colors.white),
+          child: Stack(
+            children: [
+              Positioned(
+                left: 151,
+                top: 80,
+                child: Text(
+                  '라온트립',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 24,
+                    fontFamily: 'Noto Sans',
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ),
+              Positioned(
+                left: 32,
+                top: 148,
+                child: Text(
+                  '외국인 인기 명소',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                    fontFamily: 'Noto Sans',
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ),
+              Positioned(
+                left: 32,
+                top: 497,
+                child: Text(
+                  '내국인 인기 명소',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                    fontFamily: 'Noto Sans',
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ),
+              Positioned(
+                left: 30,
+                top: 193,
+                child: Container(
+                  width: 360,
+                  clipBehavior: Clip.antiAlias,
+                  decoration: BoxDecoration(),
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: List.generate(imagePathsf.length, (index) {
+                        return Padding(
+                          padding: EdgeInsets.only(right: 10),
+                          child: _buildButtonWithImagef(imagePathsf[index], regionNamesf[index]),
+                        );
+                      }),
+                    ),
+                  ),
+                ),
+              ),
+
+              Positioned(
+                left: 30,
+                top: 542,
+                child: Container(
+                  width: 360,
+                  clipBehavior: Clip.antiAlias,
+                  decoration: BoxDecoration(),
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: List.generate(imagePaths.length, (index) {
+                        return Padding(
+                          padding: EdgeInsets.only(right: 10),
+                          child: _buildButtonWithImage(imagePaths[index], regionNames[index]),
+                        );
+                      }),
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
+                left: 35,
+                bottom: 32,
+                child: Container(
+                  width: 324,
+                  height: 15,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => Page2()),
+                          );
+                        },
+                        icon: Icon(Icons.search),
+                        color: Colors.black,
+                        iconSize: 20,
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => MainPage()),
+                          );
+                        },
+                        icon: Icon(Icons.home),
+                        color: Colors.black,
+                        iconSize: 20,
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => MainPage()), // 마이페이지로 바꿀 것
+                          );
+                        },
+                        icon: Icon(Icons.person),
+                        color: Colors.black,
+                        iconSize: 20,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              if (isPopupVisible)
+                PopupWidget(
+                  onClose: () {
+                    setState(() {
+                      isPopupVisible = false;
+                    });
+                  },
+                ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+// 내국인
+Widget _buildButtonWithImage(String imagePath, String regionName) {
+  return Container(
+    width: 200,
+    height: 200,
+    child: Stack(
+      children: [
+        Container(
+          width: 200,
+          height: 200,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+          ),
+        ),
+        Positioned(
+          left: 0,
+          top: 0,
+          child: Container(
+            width: 200,
+            height: 200,
+            decoration: ShapeDecoration(
+              image: DecorationImage(
+                image: AssetImage(imagePath),
+                fit: BoxFit.fill,
+                colorFilter: ColorFilter.mode(
+                  Colors.white.withOpacity(0.5), // 투명도
+                  BlendMode.dstATop,
+                ),
+              ),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+              ),
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+          ),
+        ),
+        Positioned(
+          left: 0,
+          top: 0,
+          right: 0,
+          bottom: 0,
+          child: Center(
+            child: Text(
+              regionName,
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 20,
+                fontFamily: 'Noto Sans',
+                fontWeight: FontWeight.w700,
+              ),
             ),
-          ],
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
+// 외국인
+Widget _buildButtonWithImagef(String imagePathf, String regionNamef) {
+  return Container(
+    width: 200,
+    height: 200,
+    child: Stack(
+      children: [
+        Container(
+          width: 200,
+          height: 200,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+          ),
+        ),
+        Positioned(
+          left: 0,
+          top: 0,
+          child: Container(
+            width: 200,
+            height: 200,
+            decoration: ShapeDecoration(
+              image: DecorationImage(
+                image: AssetImage(imagePathf),
+                fit: BoxFit.fill,
+                colorFilter: ColorFilter.mode(
+                  Colors.white.withOpacity(0.5), // 투명도
+                  BlendMode.dstATop,
+                ),
+              ),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+              ),
+            ),
+          ),
+        ),
+        Positioned(
+          left: 0,
+          top: 0,
+          right: 0,
+          bottom: 0,
+          child: Center(
+            child: Text(
+              regionNamef,
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 20,
+                fontFamily: 'Noto Sans',
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
+class PopupWidget extends StatelessWidget {
+  final VoidCallback onClose;
+
+  PopupWidget({required this.onClose});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      height: double.infinity,
+      color: Color.fromRGBO(0, 0, 0, 0.5), // 반투명한 배경색
+      child: Center(
+        child: Container(
+          width: 200,
+          height: 150,
+          color: Colors.white,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "언어 선택",
+                style: TextStyle(
+                color: Colors.black,
+                fontSize: 20,
+                fontFamily: 'Noto Sans',
+                fontWeight: FontWeight.w700,
+              ),),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  // 첫 번째 버튼에 대한 동작 수행
+                  onClose(); // 팝업 닫기
+                },
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.green, // Change the button color here
+                  onPrimary: Colors.white, // Change the text color here
+                ),
+                child: Text(
+                    "English",
+                    style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontFamily: 'Noto Sans',
+                    fontWeight: FontWeight.w400,
+                  ),),
+              ),
+              SizedBox(height: 10),
+              ElevatedButton(
+                onPressed: () {
+                  // 두 번째 버튼에 대한 동작 수행
+                  onClose(); // 팝업 닫기
+                },
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.green, // Change the button color here
+                  onPrimary: Colors.white, // Change the text color here
+                ),
+                child: Text(
+                    "한국어",
+                    style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontFamily: 'Noto Sans',
+                    fontWeight: FontWeight.w400,
+                  ),),
+              ),
+            ],
+          ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
