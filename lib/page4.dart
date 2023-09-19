@@ -404,34 +404,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             ),
-            // Positioned(
-            //   left: 127,
-            //   top: 86,
-            //   child: Text(
-            //     '검색 결과',
-            //     style: TextStyle(
-            //       color: Colors.black,
-            //       fontSize: 16,
-            //       fontFamily: 'Noto Sans',
-            //       fontWeight: FontWeight.w400,
-            //     ),
-            //   ),
-            // ),
           ],
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.search), label: "search"),
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "home"),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: "mypage")
-        ],
-        backgroundColor: Colors.white,
-        fixedColor: Colors.black,
-        unselectedItemColor: Colors.black,
-        elevation: 0,
       ),
     );
   }

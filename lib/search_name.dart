@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:raon_trip/page4.dart';
 
 class SecondApp extends StatelessWidget {
   const SecondApp({Key? key}) : super(key: key);
@@ -91,36 +92,34 @@ class SecondApp extends StatelessWidget {
             top: 33,
             child: SizedBox(
               width: 327,
-              height: 42,
+              height: 40,
               child: Stack(
                 children: [
+                  const Positioned(
+                      left: 0,
+                      top: 0,
+                      width: 276,
+                      height: 40,
+                      child: TextField(
+                          decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: '지역/장소명을 입력하세요',
+                      ))),
                   Positioned(
-                    left: 0,
+                    left: 280,
                     top: 0,
-                    child: Container(
-                      width: 276.24,
-                      height: 42,
-                      decoration: ShapeDecoration(
-                        shape: RoundedRectangleBorder(
-                          side:
-                              BorderSide(width: 0.50, color: Color(0xFF979797)),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    left: 281.12,
-                    top: 0,
-                    child: Container(
-                      width: 45.88,
-                      height: 42,
-                      decoration: ShapeDecoration(
-                        color: Color(0xFFD9D9D9),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
+                    width: 40,
+                    height: 40,
+                    child: IconButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Page4()),
+                        );
+                      },
+                      icon: const Icon(Icons.search),
+                      iconSize: 30,
                     ),
                   ),
                 ],
@@ -215,23 +214,6 @@ class SecondApp extends StatelessWidget {
                 fontSize: 16,
                 fontFamily: 'Noto Sans',
                 fontWeight: FontWeight.w400,
-              ),
-            ),
-          ),
-          Positioned(
-            left: 323,
-            top: 42,
-            child: Container(
-              width: 25,
-              height: 25,
-              decoration: ShapeDecoration(
-                image: DecorationImage(
-                  image: NetworkImage("https://via.placeholder.com/25x25"),
-                  fit: BoxFit.fill,
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
               ),
             ),
           ),
