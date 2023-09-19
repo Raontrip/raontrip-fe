@@ -33,7 +33,7 @@ class _InfoWidgetState extends State<InfoWidget> {
       children: [
         Container(
           width: 390,
-          height: 844,
+          height: 840,
           clipBehavior: Clip.antiAlias,
           decoration: BoxDecoration(color: Colors.white),
           child: Stack(
@@ -87,7 +87,7 @@ class _InfoWidgetState extends State<InfoWidget> {
               ),
               Positioned(
                 left: 50,
-                top: 416,
+                top: 406,
                 child: ElevatedButton(
                   onPressed: () {
                     // 해시태그 누르면 넘어갈 곳
@@ -113,7 +113,7 @@ class _InfoWidgetState extends State<InfoWidget> {
               ),
               Positioned(
                 left: 50 + 30 + 47,
-                top: 416,
+                top: 406,
                 child: ElevatedButton(
                   onPressed: () {
                     // 해시태그 누르면 넘어갈 곳
@@ -165,7 +165,7 @@ class _InfoWidgetState extends State<InfoWidget> {
               ),
               Positioned(
                 left: 35,
-                top: 454,
+                top: 474,
                 right: 35,
                 bottom: 100,
                 child: KakaoMap(
@@ -183,43 +183,6 @@ class _InfoWidgetState extends State<InfoWidget> {
                   center: LatLng(37.3608681, 126.9306506),
                 ),
               ),
-              Positioned(
-                left: 35,
-                bottom: 32,
-                child: Container(
-                  width: 324,
-                  height: 15,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      IconButton(
-                        onPressed: () {
-                          // 검색 버튼 클릭 시 처리
-                        },
-                        icon: Icon(Icons.search),
-                        color: Colors.black,
-                        iconSize: 20,
-                      ),
-                      IconButton(
-                        onPressed: () {
-                          // 홈 버튼 클릭 시 처리
-                        },
-                        icon: Icon(Icons.home),
-                        color: Colors.black,
-                        iconSize: 20,
-                      ),
-                      IconButton(
-                        onPressed: () {
-                          // 사용자 프로필 버튼 클릭 시 처리
-                        },
-                        icon: Icon(Icons.person),
-                        color: Colors.black,
-                        iconSize: 20,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
             ],
           ),
         ),
@@ -227,4 +190,3 @@ class _InfoWidgetState extends State<InfoWidget> {
     );
   }
 }
-
