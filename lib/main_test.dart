@@ -142,7 +142,7 @@ class _Iphone1313Pro1State extends State<Iphone1313Pro1> {
                 left: 30,
                 top: 93,
                 child: Container(
-                  //width: 360,
+                  width: MediaQuery.of(context).size.width - 55,
                   clipBehavior: Clip.antiAlias,
                   decoration: BoxDecoration(),
                   child: SingleChildScrollView(
@@ -163,7 +163,7 @@ class _Iphone1313Pro1State extends State<Iphone1313Pro1> {
                 left: 30,
                 top: 392,
                 child: Container(
-                  //width: 360,
+                  width: MediaQuery.of(context).size.width - 55,
                   clipBehavior: Clip.antiAlias,
                   decoration: BoxDecoration(),
                   child: SingleChildScrollView(

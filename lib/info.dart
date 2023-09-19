@@ -50,7 +50,7 @@ class _InfoWidgetState extends State<InfoWidget> {
                 left: 35,
                 top: 34,
                 child: Container(
-                  width: 360,
+                  width: MediaQuery.of(context).size.width - 70,
                   height: 240,
                   decoration: ShapeDecoration(
                     image: const DecorationImage(
