@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:raon_trip/main.dart';
 
 import 'package:raon_trip/search_hash.dart';
 import 'package:raon_trip/search_name.dart';
@@ -48,30 +47,29 @@ class _MyHomePageState extends State<MyHomePage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('검색'),
-        titleTextStyle: const TextStyle(
-          color: Colors.black,
-          fontSize: 24,
-          fontWeight: FontWeight.w700,
+        appBar: AppBar(
+          title: const Text('검색'),
+          titleTextStyle: const TextStyle(
+            color: Colors.black,
+            fontSize: 24,
+            fontWeight: FontWeight.w700,
+          ),
+          backgroundColor: Colors.white,
+          elevation: 0.0,
+          bottom: TabBar(
+            tabs: <Tab>[
+              Tab(
+                text: "해시태그",
+              ),
+              Tab(
+                text: "지역/장소명",
+              )
+            ],
+            controller: controller,
+          ),
         ),
-        backgroundColor: Colors.white,
-        elevation: 0.0,
-        bottom: TabBar(
-          tabs: const <Tab>[
-            Tab(
-              text: "해시태그",
-            ),
-            Tab(
-              text: "지역/장소명",
-            )
-          ],
-          controller: controller,
-        ),
-      ),
-      body: TabBarView(
-          controller: controller,
-          children: const <Widget>[FirstApp(), SecondApp()]),
-    );
+        body: TabBarView(
+            controller: controller,
+            children: <Widget>[FirstApp(), SecondApp()]));
   }
 }

@@ -55,7 +55,7 @@ class SecondApp extends StatelessWidget {
           // ),
           Positioned(
             left: 55,
-            top: 178,
+            top: 170,
             child: TextButton(
               onPressed: () {
                 Navigator.pushNamed(context, '/fourth');

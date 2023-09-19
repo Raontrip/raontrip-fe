@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:raon_trip/main.dart';
 import 'package:raon_trip/page4.dart';
-import 'package:raon_trip/page6.dart';
 
-class FirstApp extends StatelessWidget {
-  const FirstApp({Key? key}) : super(key: key);
+class FirstApp extends StatefulWidget {
+  const FirstApp({super.key});
 
+  @override
+  _FirstAppState createState() => _FirstAppState();
+}
+
+class _FirstAppState extends State<FirstApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,13 +22,15 @@ class FirstApp extends StatelessWidget {
         children: [
           Positioned(
             left: 55,
-            top: 178,
+            top: 170,
             child: TextButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/fourth');
-              },
-              child: const Text('에버랜드'),
-            ),
+                child: Text('에버랜드'),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => MainPage()),
+                  );
+                }),
           ),
           Positioned(
             left: 32,
@@ -36,7 +43,7 @@ class FirstApp extends StatelessWidget {
                   Positioned(
                     left: 0,
                     top: 0,
-                    child: Container(
+                    child: SizedBox(
                         width: 276,
                         height: 40,
                         child: TextField(
@@ -54,11 +61,10 @@ class FirstApp extends StatelessWidget {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => const Page4()),
+                          MaterialPageRoute(builder: (context) => Page4()),
                         );
                       },
-                      icon: const Icon(Icons.search),
+                      icon: Icon(Icons.search),
                       iconSize: 30,
                     ),
                   ),
