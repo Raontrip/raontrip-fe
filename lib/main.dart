@@ -111,81 +111,82 @@ class _Iphone1313Pro1State extends State<Iphone1313Pro1> {
   }
 }
 
-class PopupWidget extends StatelessWidget {
-  final VoidCallback onClose;
-
-  PopupWidget({required this.onClose});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: double.infinity,
-      color: Color.fromRGBO(0, 0, 0, 0.5), // 반투명한 배경색
-      child: Center(
-        child: Container(
-          width: 200,
-          height: 150,
-          color: Colors.white,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "언어 선택",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20,
-                  fontFamily: 'Noto Sans',
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-              SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {
-                  // 첫 번째 버튼에 대한 동작 수행
-                  onClose(); // 팝업 닫기
-                },
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.green, // Change the button color here
-                  onPrimary: Colors.white, // Change the text color here
-                ),
-                child: Text(
-                  "English",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontFamily: 'Noto Sans',
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              ),
-              SizedBox(height: 10),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => Page2()), // 마이페이지로 바꿀 것
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.green, // Change the button color here
-                  onPrimary: Colors.white, // Change the text color here
-                ),
-                child: Text(
-                  "한국어",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontFamily: 'Noto Sans',
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
+// class PopupWidget extends StatelessWidget {
+//   final VoidCallback onClose;
+//
+//   PopupWidget({required this.onClose});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       width: double.infinity,
+//       height: double.infinity,
+//       color: const Color.fromRGBO(0, 0, 0, 0.5), // 반투명한 배경색
+//       child: Center(
+//         child: Container(
+//           width: 200,
+//           height: 200,
+//           color: Colors.white,
+//           child: Column(
+//             mainAxisAlignment: MainAxisAlignment.center,
+//             children: [
+//               const Text(
+//                 "언어 선택",
+//                 style: TextStyle(
+//                   color: Colors.black,
+//                   fontSize: 20,
+//                   fontFamily: 'Noto Sans',
+//                   fontWeight: FontWeight.w700,
+//                 ),
+//               ),
+//               const SizedBox(height: 20),
+//               ElevatedButton(
+//                 onPressed: () {
+//                   // 첫 번째 버튼에 대한 동작 수행
+//                   onClose(); // 팝업 닫기
+//                 },
+//                 style: ElevatedButton.styleFrom(
+//                   primary: Colors.green, // Change the button color here
+//                   onPrimary: Colors.white, // Change the text color here
+//                 ),
+//                 child: const Text(
+//                   "English",
+//                   style: TextStyle(
+//                     color: Colors.white,
+//                     fontSize: 16,
+//                     fontFamily: 'Noto Sans',
+//                     fontWeight: FontWeight.w400,
+//                   ),
+//                 ),
+//               ),
+//               const SizedBox(height: 10),
+//               ElevatedButton(
+//                 onPressed: () {
+//                   // Navigator.push(
+//                   //   context,
+//                   //   MaterialPageRoute(
+//                   //       builder: (context) => Page2()), // 마이페이지로 바꿀 것
+//                   // );
+//                   onClose(); // 팝업 닫기
+//                 },
+//                 style: ElevatedButton.styleFrom(
+//                   primary: Colors.green, // Change the button color here
+//                   onPrimary: Colors.white, // Change the text color here
+//                 ),
+//                 child: const Text(
+//                   "한국어",
+//                   style: TextStyle(
+//                     color: Colors.white,
+//                     fontSize: 16,
+//                     fontFamily: 'Noto Sans',
+//                     fontWeight: FontWeight.w400,
+//                   ),
+//                 ),
+//               ),
+//             ],
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+//

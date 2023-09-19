@@ -62,7 +62,7 @@ class MainTest extends StatelessWidget {
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: Text('라온트립',
+          title: const Text('라온트립',
               style: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.w700,
@@ -112,7 +112,7 @@ class _Iphone1313Pro1State extends State<Iphone1313Pro1> {
           // decoration: BoxDecoration(color: Colors.white),
           child: Stack(
             children: [
-              Positioned(
+              const Positioned(
                 left: 32,
                 top: 48,
                 child: Text(
@@ -125,7 +125,7 @@ class _Iphone1313Pro1State extends State<Iphone1313Pro1> {
                   ),
                 ),
               ),
-              Positioned(
+              const Positioned(
                 left: 32,
                 top: 347,
                 child: Text(
@@ -198,7 +198,7 @@ class _Iphone1313Pro1State extends State<Iphone1313Pro1> {
 
 // 내국인
 Widget _buildButtonWithImage(String imagePath, String regionName) {
-  return Container(
+  return SizedBox(
     width: 200,
     height: 200,
     child: Stack(
@@ -239,7 +239,7 @@ Widget _buildButtonWithImage(String imagePath, String regionName) {
           child: Center(
             child: Text(
               regionName,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.black,
                 fontSize: 20,
                 fontFamily: 'Noto Sans',
@@ -255,7 +255,7 @@ Widget _buildButtonWithImage(String imagePath, String regionName) {
 
 // 외국인
 Widget _buildButtonWithImagef(String imagePathf, String regionNamef) {
-  return Container(
+  return SizedBox(
     width: 200,
     height: 200,
     child: Stack(
@@ -296,7 +296,7 @@ Widget _buildButtonWithImagef(String imagePathf, String regionNamef) {
           child: Center(
             child: Text(
               regionNamef,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.black,
                 fontSize: 20,
                 fontFamily: 'Noto Sans',
@@ -320,7 +320,7 @@ class PopupWidget extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: double.infinity,
-      color: Color.fromRGBO(0, 0, 0, 0.5), // 반투명한 배경색
+      color: const Color.fromRGBO(0, 0, 0, 0.5), // 반투명한 배경색
       child: Center(
         child: Container(
           width: 200,
@@ -329,7 +329,7 @@ class PopupWidget extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
+              const Text(
                 "언어 선택",
                 style: TextStyle(
                   color: Colors.black,
@@ -338,7 +338,7 @@ class PopupWidget extends StatelessWidget {
                   fontWeight: FontWeight.w700,
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   // 첫 번째 버튼에 대한 동작 수행
@@ -348,7 +348,7 @@ class PopupWidget extends StatelessWidget {
                   primary: Colors.green, // Change the button color here
                   onPrimary: Colors.white, // Change the text color here
                 ),
-                child: Text(
+                child: const Text(
                   "English",
                   style: TextStyle(
                     color: Colors.white,
@@ -358,20 +358,21 @@ class PopupWidget extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => Page2()), // 마이페이지로 바꿀 것
-                  );
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //       builder: (context) => Page2()), // 마이페이지로 바꿀 것
+                  // );
+                  onClose(); // 팝업 닫기
                 },
                 style: ElevatedButton.styleFrom(
                   primary: Colors.green, // Change the button color here
                   onPrimary: Colors.white, // Change the text color here
                 ),
-                child: Text(
+                child: const Text(
                   "한국어",
                   style: TextStyle(
                     color: Colors.white,

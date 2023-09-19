@@ -8,9 +8,21 @@ class InfoPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: const Color.fromARGB(255, 18, 32, 47),
+        scaffoldBackgroundColor: const Color.fromARGB(255, 255, 255, 255),
       ),
       home: Scaffold(
+        appBar: AppBar(
+          title: const Text('에버랜드',
+              style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.w700,
+                fontSize: 24,
+              )),
+          backgroundColor: Colors.white,
+          elevation: 0,
+
+          // foregroundColor: Colors.white,
+        ),
         body: InfoWidget(),
       ),
     );
@@ -31,51 +43,17 @@ class _InfoWidgetState extends State<InfoWidget> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
-          width: 390,
-          height: 840,
-          clipBehavior: Clip.antiAlias,
-          decoration: BoxDecoration(color: Colors.white),
+        Flexible(
           child: Stack(
             children: [
               Positioned(
-                left: 151,
-                top: 80,
-                child: Text(
-                  '에버랜드',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 24,
-                    fontFamily: 'Noto Sans',
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-              ),
-              Positioned(
                 left: 35,
-                top: 134,
+                top: 34,
                 child: Container(
-                  width: 320,
+                  width: 360,
                   height: 240,
                   decoration: ShapeDecoration(
-                    image: DecorationImage(
-                      image: AssetImage("assets/images/everland.png"),
-                      fit: BoxFit.fill,
-                    ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 35,
-                top: 134,
-                child: Container(
-                  width: 320,
-                  height: 240,
-                  decoration: ShapeDecoration(
-                    image: DecorationImage(
+                    image: const DecorationImage(
                       image: AssetImage("assets/images/everland.png"),
                       fit: BoxFit.fill,
                     ),
@@ -87,20 +65,20 @@ class _InfoWidgetState extends State<InfoWidget> {
               ),
               Positioned(
                 left: 50,
-                top: 406,
+                top: 315,
                 child: ElevatedButton(
                   onPressed: () {
                     // 해시태그 누르면 넘어갈 곳
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: Color(0xFFE7E7E7),
+                    backgroundColor: Color(0xFFE7E7E7),
                     elevation: 0,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15),
                     ),
-                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    // padding: EdgeInsets.symmetric(horizontal: 10),
                   ),
-                  child: Text(
+                  child: const Text(
                     '# 놀이공원',
                     style: TextStyle(
                       color: Colors.black,
@@ -112,21 +90,21 @@ class _InfoWidgetState extends State<InfoWidget> {
                 ),
               ),
               Positioned(
-                left: 50 + 30 + 47,
-                top: 406,
+                left: 50 + 30 + 47 + 10,
+                top: 315,
                 child: ElevatedButton(
                   onPressed: () {
                     // 해시태그 누르면 넘어갈 곳
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: Color(0xFFE7E7E7),
+                    backgroundColor: const Color(0xFFE7E7E7),
                     elevation: 0,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15),
                     ),
-                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    // padding: EdgeInsets.symmetric(horizontal: 10),
                   ),
-                  child: Text(
+                  child: const Text(
                     '# 테마파크',
                     style: TextStyle(
                       color: Colors.black,
@@ -138,10 +116,10 @@ class _InfoWidgetState extends State<InfoWidget> {
                 ),
               ),
               Positioned(
-                left: 35,
-                top: 380,
+                left: 50,
+                top: 290,
                 child: Row(
-                  children: [
+                  children: const [
                     Text(
                       '위치 : ',
                       style: TextStyle(
@@ -165,7 +143,7 @@ class _InfoWidgetState extends State<InfoWidget> {
               ),
               Positioned(
                 left: 35,
-                top: 474,
+                top: 374,
                 right: 35,
                 bottom: 100,
                 child: KakaoMap(
