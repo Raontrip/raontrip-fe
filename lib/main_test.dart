@@ -152,7 +152,7 @@ class _Iphone1313Pro1State extends State<Iphone1313Pro1> {
                         return Padding(
                           padding: EdgeInsets.only(right: 10),
                           child: _buildButtonWithImagef(
-                              imagePathsf[index], regionNamesf[index]),
+                              imagePathsf[index], regionNamesf[index]), // 스크롤 사진
                         );
                       }),
                     ),

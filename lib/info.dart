@@ -55,7 +55,7 @@ class _InfoWidgetState extends State<InfoWidget> {
                   decoration: ShapeDecoration(
                     image: const DecorationImage(
                       image: AssetImage("assets/images/everland.png"),
-                      fit: BoxFit.fill,
+                      fit: BoxFit.fitWidth, //너비에 맞게 확대 축소
                     ),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
