@@ -56,7 +56,7 @@ class _Iphone1313Pro1State extends State<Iphone1313Pro1> {
         unselectedItemColor: Colors.black,
         elevation: 0,
 
-        items: [
+        items: const [
           BottomNavigationBarItem(icon: Icon(Icons.search), label: "search"),
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "home"),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: "mypage")
