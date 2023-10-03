@@ -3,7 +3,9 @@ import 'package:raon_trip/info.dart';
 import 'package:raon_trip/page4.dart';
 
 class FirstApp extends StatelessWidget {
-  const FirstApp({Key? key}) : super(key: key);
+  FirstApp({Key? key}) : super(key: key);
+
+  final TextEditingController _searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,7 @@ class FirstApp extends StatelessWidget {
             child: TextButton(
               onPressed: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => InfoPage()));
+                    MaterialPageRoute(builder: (context) => InfoPage("에버랜드",130728, 82, "ETC")));
               },
               child: const Text('에버랜드!'),
             ),
@@ -34,15 +36,16 @@ class FirstApp extends StatelessWidget {
               height: 40,
               child: Stack(
                 children: [
-                  const Positioned(
+                  Positioned(
                       left: 0,
                       top: 0,
                       width: 276,
                       height: 40,
                       child: TextField(
+                          controller: _searchController,
                           decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: '해시태그를 입력하세요',
+                            border: OutlineInputBorder(),
+                            labelText: '해시태그를 입력하세요',
                       ))),
                   Positioned(
                     left: 280,
@@ -51,9 +54,10 @@ class FirstApp extends StatelessWidget {
                     height: 40,
                     child: IconButton(
                       onPressed: () {
+                        final keyword  = _searchController.text;
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => Page4()),
+                          MaterialPageRoute(builder: (context) => Page4(1, 82, keyword, 'ETC')),
                         );
                       },
                       icon: const Icon(Icons.search),

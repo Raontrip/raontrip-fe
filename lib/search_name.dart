@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:raon_trip/page4.dart';
 
 class SecondApp extends StatelessWidget {
-  const SecondApp({Key? key}) : super(key: key);
+  SecondApp({Key? key}) : super(key: key);
+
+  final TextEditingController _searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -95,15 +97,16 @@ class SecondApp extends StatelessWidget {
               height: 40,
               child: Stack(
                 children: [
-                  const Positioned(
+                  Positioned(
                       left: 0,
                       top: 0,
                       width: 276,
                       height: 40,
                       child: TextField(
+                          controller: _searchController,
                           decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: '지역/장소명을 입력하세요',
+                            border: OutlineInputBorder(),
+                            labelText: '지역/장소명을 입력하세요',
                       ))),
                   Positioned(
                     left: 280,
@@ -112,10 +115,11 @@ class SecondApp extends StatelessWidget {
                     height: 40,
                     child: IconButton(
                       onPressed: () {
+                        final keyword  = _searchController.text;
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const Page4()),
+                              builder: (context) => Page4(1, 82, keyword, 'ETC')),
                         );
                       },
                       icon: const Icon(Icons.search),

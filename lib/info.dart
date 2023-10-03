@@ -6,6 +6,13 @@ import 'package:webview_flutter/webview_flutter.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class InfoPage extends StatelessWidget {
+  final String title;
+  final int contentId;
+  final int lang;
+  final String mobileOS;
+
+  InfoPage(this.title, this.contentId, this.lang, this.mobileOS);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -14,7 +21,7 @@ class InfoPage extends StatelessWidget {
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('에버랜드',
+          title: Text(title,
               style: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.w700,
@@ -25,21 +32,33 @@ class InfoPage extends StatelessWidget {
 
           // foregroundColor: Colors.white,
         ),
-        body: InfoWidget(),
+        body: InfoWidget(this.contentId, this.lang, this.mobileOS),
       ),
     );
   }
 }
 
 class InfoWidget extends StatefulWidget {
+  final int contentId;
+  final int lang;
+  final String mobileOS;
+
+  InfoWidget(this.contentId, this.lang, this.mobileOS);
+
   @override
-  _InfoWidgetState createState() => _InfoWidgetState();
+  _InfoWidgetState createState() => _InfoWidgetState(this.contentId, this.lang, this.mobileOS);
 }
 
 class _InfoWidgetState extends State<InfoWidget> {
-  late KakaoMapController mapController; // mapController를 여기서 선언합니다.
+  final int id;
+  final int lang;
+  final String mobileOS;
 
+  _InfoWidgetState(this.id, this.lang, this.mobileOS);
+
+  late KakaoMapController mapController; // mapController를 여기서 선언합니다.
   Set<Marker> markers = {};
+
   int contentId = 0;
   int contentTypeId = 0;
   String title = "";
@@ -57,11 +76,11 @@ class _InfoWidgetState extends State<InfoWidget> {
   @override
   void initState() {
     super.initState();
-    fetchAPI();
+    fetchAPI(this.id, this.lang, this.mobileOS);
   }
 
-  Future<void> fetchAPI() async {
-    String url = 'http://13.124.208.42:8080/place/130728?lang=82&mobileOS=ETC';
+  Future<void> fetchAPI(int id, int lang, String mobileOS) async {
+    String url = 'http://13.124.208.42:8080/place/$id?lang=$lang&mobileOS=$mobileOS';
     final response = await http.get(Uri.parse(url));
 
     if (response.statusCode == 200) {

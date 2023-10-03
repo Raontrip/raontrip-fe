@@ -36,7 +36,7 @@ class _Iphone1313Pro1State extends State<Iphone1313Pro1> {
     //이게 하나하나의 화면이되고, Text등을 사용하거나, dart파일에 있는 class를 넣는다.
     Page2(),
     MainTest(),
-    InfoPage(),
+    InfoPage("에버랜드", 130728, 82, "ETC"""),
   ];
 
   @override
