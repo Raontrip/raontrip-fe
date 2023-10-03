@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:raon_trip/main.dart';
+import 'package:raon_trip/info.dart';
 import 'package:raon_trip/page4.dart';
 
-class FirstApp extends StatefulWidget {
-  const FirstApp({super.key});
+class FirstApp extends StatelessWidget {
+  const FirstApp({Key? key}) : super(key: key);
 
-  @override
-  _FirstAppState createState() => _FirstAppState();
-}
-
-class _FirstAppState extends State<FirstApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,13 +19,12 @@ class _FirstAppState extends State<FirstApp> {
             left: 55,
             top: 170,
             child: TextButton(
-                child: Text('에버랜드'),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => MainPage()),
-                  );
-                }),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => InfoPage()));
+              },
+              child: const Text('에버랜드!'),
+            ),
           ),
           Positioned(
             left: 32,
@@ -40,18 +34,16 @@ class _FirstAppState extends State<FirstApp> {
               height: 40,
               child: Stack(
                 children: [
-                  Positioned(
-                    left: 0,
-                    top: 0,
-                    child: SizedBox(
-                        width: 276,
-                        height: 40,
-                        child: TextField(
-                            decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: '해시태그를 입력하세요',
-                        ))),
-                  ),
+                  const Positioned(
+                      left: 0,
+                      top: 0,
+                      width: 276,
+                      height: 40,
+                      child: TextField(
+                          decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: '해시태그를 입력하세요',
+                      ))),
                   Positioned(
                     left: 280,
                     top: 0,
@@ -64,7 +56,7 @@ class _FirstAppState extends State<FirstApp> {
                           MaterialPageRoute(builder: (context) => Page4()),
                         );
                       },
-                      icon: Icon(Icons.search),
+                      icon: const Icon(Icons.search),
                       iconSize: 30,
                     ),
                   ),
@@ -84,7 +76,7 @@ class _FirstAppState extends State<FirstApp> {
                 fontWeight: FontWeight.w400,
               ),
             ),
-          ),
+          ), // 놀이공원
           Positioned(
             left: 204,
             top: 85,
@@ -97,7 +89,7 @@ class _FirstAppState extends State<FirstApp> {
                 fontWeight: FontWeight.w400,
               ),
             ),
-          ),
+          ), // 놀이공원
           Positioned(
             left: 284,
             top: 85,
@@ -110,7 +102,7 @@ class _FirstAppState extends State<FirstApp> {
                 fontWeight: FontWeight.w400,
               ),
             ),
-          ),
+          ), // 놀이공원
           Positioned(
             left: 44,
             top: 85,
@@ -123,7 +115,7 @@ class _FirstAppState extends State<FirstApp> {
                 fontWeight: FontWeight.w400,
               ),
             ),
-          ),
+          ), // 놀이공원
           Positioned(
             left: 31,
             top: 163,
@@ -149,7 +141,7 @@ class _FirstAppState extends State<FirstApp> {
                 fontWeight: FontWeight.w700,
               ),
             ),
-          ),
+          ), // 최근 검색 기록
           Positioned(
             left: 124,
             top: 183,
