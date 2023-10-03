@@ -57,8 +57,8 @@ class Rank {
 
   Rank(
       {required this.administrativeName,
-      required this.sggName,
-      required this.img});
+        required this.sggName,
+        required this.img});
 
   Rank.fromMapSgg(Map<String, dynamic>? map) {
     administrativeName = map?['sgg']['administrativeName'] ?? '';
