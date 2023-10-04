@@ -6,7 +6,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:raon_trip/page2.dart';
+import 'package:raon_trip/page4.dart';
 import 'main.dart';
 import 'package:kakao_map_plugin/kakao_map_plugin.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -156,6 +158,9 @@ class Iphone1313Pro1 extends StatefulWidget {
 class _Iphone1313Pro1State extends State<Iphone1313Pro1> {
   bool isLoading = true;
   RankProviders rankProviders = RankProviders();
+  int lang = 0;
+  bool isPopupVisible = false;
+
   // Future initNews() async {
   initNews() async {
     await rankProviders.getRank();
@@ -173,9 +178,35 @@ class _Iphone1313Pro1State extends State<Iphone1313Pro1> {
         isLoading = false;
       });
     });
+    loadLang();
+    loadVisible();
   }
 
-  bool isPopupVisible = true;
+  Future<void> loadLang() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      lang = prefs.getInt('lang') ?? 0;
+      isPopupVisible = prefs.getBool('isPopupVisible') ?? true;
+    });
+  }
+
+  Future<void> saveLang() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setInt('lang', lang);
+    await prefs.setBool('isPopupVisible', false);
+  }
+
+  Future<void> loadVisible() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      isPopupVisible = prefs.getBool('isPopupVisible') ?? true;
+    });
+  }
+
+  Future<void> saveVisible() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('isPopupVisible', false);
+  }
 
   int _selectedIndex = 0;
 
@@ -242,7 +273,7 @@ class _Iphone1313Pro1State extends State<Iphone1313Pro1> {
                         return Padding(
                           padding: EdgeInsets.only(right: 10),
                           child: _buildButtonWithImagef(imagePathsf[index],
-                              regionNamesf[index]), // 스크롤 사진
+                              regionNamesf[index], context), // 스크롤 사진
                         );
                       }),
                     ),
@@ -263,7 +294,7 @@ class _Iphone1313Pro1State extends State<Iphone1313Pro1> {
                         return Padding(
                           padding: EdgeInsets.only(right: 10),
                           child: _buildButtonWithImage(
-                              imagePaths[index], regionNames[index]),
+                              imagePaths[index], regionNames[index], context),
                         );
                       }),
                     ),
@@ -276,6 +307,7 @@ class _Iphone1313Pro1State extends State<Iphone1313Pro1> {
                     setState(() {
                       isPopupVisible = false;
                     });
+                    saveVisible();
                   },
                 ),
             ],
@@ -287,7 +319,7 @@ class _Iphone1313Pro1State extends State<Iphone1313Pro1> {
 }
 
 // 내국인
-Widget _buildButtonWithImage(String imagePath, String regionName) {
+Widget _buildButtonWithImage(String imagePath, String regionName, BuildContext context) {
   return SizedBox(
     width: 200,
     height: 200,
@@ -303,30 +335,38 @@ Widget _buildButtonWithImage(String imagePath, String regionName) {
         Positioned(
           left: 0,
           top: 0,
-          child: CachedNetworkImage(
-            imageUrl: imagePath,
-            imageBuilder: (context, imageProvider) => Container(
-              width: 200,
-              height: 200,
-              decoration: ShapeDecoration(
-                image: DecorationImage(
-                  image: imageProvider,
-                  fit: BoxFit.fill,
-                  colorFilter: ColorFilter.mode(
-                    Colors.white.withOpacity(0.5), // 투명도
-                    BlendMode.dstATop,
+          child: GestureDetector(
+            onTap: () {
+              String keyword = regionName.replaceAll('#', '').split(' ').last;
+              Navigator.push(context,
+                MaterialPageRoute(builder: (context) => Page4(1, 82, keyword, 'ETC')),
+              );
+            },
+            child: CachedNetworkImage(
+              imageUrl: imagePath,
+              imageBuilder: (context, imageProvider) => Container(
+                width: 200,
+                height: 200,
+                decoration: ShapeDecoration(
+                  image: DecorationImage(
+                    image: imageProvider,
+                    fit: BoxFit.fill,
+                    colorFilter: ColorFilter.mode(
+                      Colors.white.withOpacity(0.5), // 투명도
+                      BlendMode.dstATop,
+                    ),
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
                   ),
                 ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
               ),
+              cacheManager: CacheManager(Config(
+                "fluttercampus",
+                stalePeriod: const Duration(days: 1), //cache로 저장되는 기간 1일로 설정
+                //one week cache period
+              )),
             ),
-            cacheManager: CacheManager(Config(
-              "fluttercampus",
-              stalePeriod: const Duration(days: 1), //cache로 저장되는 기간 1일로 설정
-              //one week cache period
-            )),
           ),
         ),
         Positioned(
@@ -352,7 +392,7 @@ Widget _buildButtonWithImage(String imagePath, String regionName) {
 }
 
 // 외국인
-Widget _buildButtonWithImagef(String imagePathf, String regionNamef) {
+Widget _buildButtonWithImagef(String imagePathf, String regionNamef, BuildContext context) {
   return SizedBox(
     width: 200,
     height: 200,
@@ -368,30 +408,38 @@ Widget _buildButtonWithImagef(String imagePathf, String regionNamef) {
         Positioned(
           left: 0,
           top: 0,
-          child: CachedNetworkImage(
-            imageUrl: imagePathf,
-            imageBuilder: (context, imageProvider) => Container(
-              width: 200,
-              height: 200,
-              decoration: ShapeDecoration(
-                image: DecorationImage(
-                  image: imageProvider,
-                  fit: BoxFit.fill,
-                  colorFilter: ColorFilter.mode(
-                    Colors.white.withOpacity(0.5), // 투명도
-                    BlendMode.dstATop,
+          child: GestureDetector(
+            onTap: () {
+              String keyword = regionNamef.replaceAll('#', '').split(' ').last;
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => Page4(1, 82, keyword, 'ETC')),
+              );
+            },
+            child: CachedNetworkImage(
+              imageUrl: imagePathf,
+              imageBuilder: (context, imageProvider) => Container(
+                width: 200,
+                height: 200,
+                decoration: ShapeDecoration(
+                  image: DecorationImage(
+                    image: imageProvider,
+                    fit: BoxFit.fill,
+                    colorFilter: ColorFilter.mode(
+                      Colors.white.withOpacity(0.5), // 투명도
+                      BlendMode.dstATop,
+                    ),
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
                   ),
                 ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
               ),
+              cacheManager: CacheManager(Config(
+                "fluttercampus",
+                stalePeriod: const Duration(days: 1), //cache로 저장되는 기간 1일로 설정
+                //one week cache period
+              )),
             ),
-            cacheManager: CacheManager(Config(
-              "fluttercampus",
-              stalePeriod: const Duration(days: 1), //cache로 저장되는 기간 1일로 설정
-              //one week cache period
-            )),
           ),
         ),
         Positioned(
