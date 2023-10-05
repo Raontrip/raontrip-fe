@@ -72,7 +72,7 @@ class _InfoWidgetState extends State<InfoWidget> {
   String originImg = "";
   String thumbnailImg = "";
   List<dynamic> tags = [];
-  LatLng latLng = LatLng(37.3608681, 126.9306506);
+  var latLng = LatLng(0, 0);
 
   @override
   void initState() {
@@ -99,8 +99,11 @@ class _InfoWidgetState extends State<InfoWidget> {
         originImg = body['data']['originImg'];
         thumbnailImg = body['data']['thumbnailImg'];
         tags.addAll(body['data']['tag']);
-        latLng.latitude = mapY;
-        latLng.longitude = mapX;
+        markers.add(Marker(
+            markerId: UniqueKey().toString(),
+            latLng: LatLng(mapY, mapX),
+        ));
+        latLng = LatLng(mapY, mapX);
       });
     } else {
       print("fail");
@@ -228,15 +231,12 @@ class _InfoWidgetState extends State<InfoWidget> {
                   onMapCreated: ((controller) async {
                     mapController = controller; // mapController를 여기서 초기화합니다.
 
-                    markers.add(Marker(
-                      markerId: UniqueKey().toString(),
-                      latLng: await mapController.getCenter(),
-                    ));
-
-                    setState(() { });
+                    setState(() {
+                      mapController.setCenter(latLng);
+                    });
                   }),
                   markers: markers.toList(),
-                  center: latLng,
+                  // center: LatLng(mapY, mapX),
                 ),
               ),
             ],
