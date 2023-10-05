@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:raon_trip/main_test.dart';
 import 'package:raon_trip/page2.dart';
 import 'package:raon_trip/info.dart';
+import 'package:raon_trip/mypage.dart';
 import 'package:kakao_map_plugin/kakao_map_plugin.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 void main() async {
-  // await dotenv.load(fileName: 'assets/env/.env.sample');
-  // AuthRepository.initialize(appKey: dotenv.env['APP_KEY'] ?? '');
-  AuthRepository.initialize(appKey: '7decdea914383cf8fb08fd059df86520');
+  await dotenv.load(fileName: ".env");
+  AuthRepository.initialize(appKey: dotenv.env['APP_KEY'] ?? '');
   WidgetsFlutterBinding.ensureInitialized(); // 필요한 초기화 부분입니다.
   runApp(const MainPage());
 }
@@ -36,7 +37,7 @@ class _Iphone1313Pro1State extends State<Iphone1313Pro1> {
     //이게 하나하나의 화면이되고, Text등을 사용하거나, dart파일에 있는 class를 넣는다.
     Page2(),
     MainTest(),
-    InfoPage("에버랜드", 130728, 82, "ETC"""),
+    myPage(),
   ];
 
   @override

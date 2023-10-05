@@ -16,17 +16,38 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 // 내국인 인기 지역 리스트
 // 이미지 받아오기
-List<String> imagePaths = [];
-
+List<String> imagePaths = [
+  'assets/images/everland.png',
+  'assets/images/jongro.png',
+  'assets/images/everland.png',
+  'assets/images/jongro.png',
+  'assets/images/everland.png',
+];
 // 지역 이름 받아오기
-List<String> regionNames = [];
-
+List<String> regionNames = [
+  '#경기도 용인시',
+  '#서울특별시 종로구',
+  '#울산광역시 북구 강동동',
+  '#4',
+  '#5',
+];
 // 외국인 인기 지역 리스트
 // 이미지 받아오기
-List<String> imagePathsf = [];
-
+List<String> imagePathsf = [
+  'assets/images/everland.png',
+  'assets/images/jongro.png',
+  'assets/images/everland.png',
+  'assets/images/jongro.png',
+  'assets/images/everland.png',
+];
 // 지역 이름 받아오기
-List<String> regionNamesf = [];
+List<String> regionNamesf = [
+  '#경기도 수원시',
+  '#서울특별시 마포구',
+  '#3',
+  '#4',
+  '#5',
+];
 
 class Rank {
   late String administrativeName;
@@ -88,14 +109,6 @@ class RankProviders {
     }
     return 1;
   }
-}
-
-void main() async {
-  // await dotenv.load(fileName: 'assets/env/.env.sample');
-  // AuthRepository.initialize(appKey: dotenv.env['APP_KEY'] ?? '');
-  AuthRepository.initialize(appKey: '7decdea914383cf8fb08fd059df86520');
-  WidgetsFlutterBinding.ensureInitialized(); // 필요한 초기화 부분입니다.
-  runApp(const MainPage());
 }
 
 class MainTest extends StatelessWidget {
@@ -337,6 +350,21 @@ Widget _buildButtonWithImage(String imagePath, String regionName, BuildContext c
                   ),
                 ),
               ),
+              errorWidget: (context, url, error) => Container(
+                width: 200,
+                height: 200,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/images/raontrip.jpg'),
+                    fit: BoxFit.cover, // 이미지가 칸 안에 꽉 채우도록 설정
+                    colorFilter: ColorFilter.mode(
+                      Colors.white.withOpacity(0.5), // 대체 이미지에도 투명도 적용
+                      BlendMode.dstATop,
+                    ),
+                  ),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+              ),
               cacheManager: CacheManager(Config(
                 "fluttercampus",
                 stalePeriod: const Duration(days: 1), //cache로 저장되는 기간 1일로 설정
@@ -408,6 +436,21 @@ Widget _buildButtonWithImagef(String imagePathf, String regionNamef, BuildContex
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
+                ),
+              ),
+              errorWidget: (context, url, error) => Container(
+                width: 200,
+                height: 200,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/images/raontrip.jpg'),
+                    fit: BoxFit.cover, // 이미지가 칸 안에 꽉 채우도록 설정
+                    colorFilter: ColorFilter.mode(
+                      Colors.white.withOpacity(0.5), // 대체 이미지에도 투명도 적용
+                      BlendMode.dstATop,
+                    ),
+                  ),
+                  borderRadius: BorderRadius.circular(20),
                 ),
               ),
               cacheManager: CacheManager(Config(

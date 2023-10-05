@@ -109,7 +109,7 @@ class _SearchFormState extends State<SearchForm> {
                     fontWeight: FontWeight.w700,
                   ),
                 ),
-              ),// 놀이공원
+              ),
               Positioned(
                 left: 31,
                 top: 163,

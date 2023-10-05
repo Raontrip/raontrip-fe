@@ -122,9 +122,7 @@ class _InfoWidgetState extends State<InfoWidget> {
                   height: 240,
                   decoration: ShapeDecoration(
                     image: DecorationImage(
-                      image: NetworkImage(
-                        originImg,
-                      ),
+                      image: NetworkImage(originImg,),
                       fit: BoxFit.fitWidth, //너비에 맞게 확대 축소
                     ),
                     shape: RoundedRectangleBorder(
