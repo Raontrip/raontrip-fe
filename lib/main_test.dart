@@ -25,11 +25,11 @@ List<String> imagePaths = [
 ];
 // 지역 이름 받아오기
 List<String> regionNames = [
-  '#경기도 용인시',
-  '#서울특별시 종로구',
-  '#울산광역시 북구 강동동',
-  '#4',
-  '#5',
+  '로딩중',
+  '로딩중',
+  '로딩중',
+  '로딩중',
+  '로딩중',
 ];
 // 외국인 인기 지역 리스트
 // 이미지 받아오기
@@ -42,11 +42,11 @@ List<String> imagePathsf = [
 ];
 // 지역 이름 받아오기
 List<String> regionNamesf = [
-  '#경기도 수원시',
-  '#서울특별시 마포구',
-  '#3',
-  '#4',
-  '#5',
+  'LOADING',
+  'LOADING',
+  'LOADING',
+  'LOADING',
+  'LOADING',
 ];
 
 class Rank {
@@ -74,7 +74,7 @@ class RankProviders {
 
   // Future getRank() async {
   getRank() async {
-    Uri u = Uri.parse(mainUrl + "size=13");
+    Uri u = Uri.parse(mainUrl + "size=10");
     final response = await http.get(u);
 
     if (jsonDecode(response.body)['code'] == 20002) {
@@ -93,7 +93,7 @@ class RankProviders {
 
   // Future getEngRank() async {
   getEngRank(int lang) async {
-    Uri u = Uri.parse(mainUrl + "lang=$lang&size=13  cat");
+    Uri u = Uri.parse(mainUrl + "lang=$lang&size=10  cat");
     final response = await http.get(u);
 
     if (jsonDecode(response.body)['code'] == 20002) {
@@ -518,7 +518,7 @@ class PopupWidget extends StatelessWidget {
                   onClose(); // 팝업 닫기
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.green, // Change the button color here
+                  primary: Colors.green[900], // Change the button color here
                   onPrimary: Colors.white, // Change the text color here
                 ),
                 child: const Text(
@@ -542,7 +542,7 @@ class PopupWidget extends StatelessWidget {
                   onClose(); // 팝업 닫기
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.green, // Change the button color here
+                  primary: Colors.green[900], // Change the button color here
                   onPrimary: Colors.white, // Change the text color here
                 ),
                 child: const Text(

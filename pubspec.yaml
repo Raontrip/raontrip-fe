@@ -70,6 +70,7 @@ flutter:
     - assets/images/ads.jpg
     - assets/images/loading.png
     - assets/images/everland.png
+    - assets/images/jongro.png
     - .env
     - assets/images/raontrip.jpg
 
