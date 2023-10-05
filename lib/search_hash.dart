@@ -98,58 +98,6 @@ class _SearchFormState extends State<SearchForm> {
                 ),
               ),
               Positioned(
-                left: 124,
-                top: 85,
-                child: Text(
-                  '#놀이공원',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 14,
-                    fontFamily: 'Noto Sans',
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              ), // 놀이공원
-              Positioned(
-                left: 204,
-                top: 85,
-                child: Text(
-                  '#놀이공원',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 14,
-                    fontFamily: 'Noto Sans',
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              ), // 놀이공원
-              Positioned(
-                left: 284,
-                top: 85,
-                child: Text(
-                  '#놀이공원',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 14,
-                    fontFamily: 'Noto Sans',
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              ), // 놀이공원
-              Positioned(
-                left: 44,
-                top: 85,
-                child: Text(
-                  '#놀이공원',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 14,
-                    fontFamily: 'Noto Sans',
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              ),
-              Positioned(
                 left: 44,
                 top: 134,
                 child: Text(

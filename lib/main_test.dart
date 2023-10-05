@@ -16,41 +16,17 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 // 내국인 인기 지역 리스트
 // 이미지 받아오기
-List<String> imagePaths = [
-  'assets/images/everland.png',
-  'assets/images/jongro.png',
-  'assets/images/everland.png',
-  'assets/images/jongro.png',
-  'assets/images/everland.png',
-];
+List<String> imagePaths = [];
 
 // 지역 이름 받아오기
-List<String> regionNames = [
-  '#경기도 용인시',
-  '#서울특별시 종로구',
-  '#울산광역시 북구 강동동',
-  '#4',
-  '#5',
-];
+List<String> regionNames = [];
 
 // 외국인 인기 지역 리스트
 // 이미지 받아오기
-List<String> imagePathsf = [
-  'assets/images/everland.png',
-  'assets/images/jongro.png',
-  'assets/images/everland.png',
-  'assets/images/jongro.png',
-  'assets/images/everland.png',
-];
+List<String> imagePathsf = [];
 
 // 지역 이름 받아오기
-List<String> regionNamesf = [
-  '#경기도 수원시',
-  '#서울특별시 마포구',
-  '#3',
-  '#4',
-  '#5',
-];
+List<String> regionNamesf = [];
 
 class Rank {
   late String administrativeName;
@@ -77,7 +53,7 @@ class RankProviders {
 
   // Future getRank() async {
   getRank() async {
-    Uri u = Uri.parse(mainUrl + "size=5");
+    Uri u = Uri.parse(mainUrl + "size=13");
     final response = await http.get(u);
 
     if (jsonDecode(response.body)['code'] == 20002) {
@@ -96,7 +72,7 @@ class RankProviders {
 
   // Future getEngRank() async {
   getEngRank(int lang) async {
-    Uri u = Uri.parse(mainUrl + "lang=$lang&size=5");
+    Uri u = Uri.parse(mainUrl + "lang=$lang&size=13  cat");
     final response = await http.get(u);
 
     if (jsonDecode(response.body)['code'] == 20002) {
@@ -237,7 +213,7 @@ class _Iphone1313Pro1State extends State<Iphone1313Pro1> {
                 left: 32,
                 top: 48,
                 child: Text(
-                  '외국인 인기 명소',
+                  '외국인 인기 지역',
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 20,
@@ -250,7 +226,7 @@ class _Iphone1313Pro1State extends State<Iphone1313Pro1> {
                 left: 32,
                 top: 347,
                 child: Text(
-                  '내국인 인기 명소',
+                  '내국인 인기 지역',
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 20,
@@ -318,7 +294,7 @@ class _Iphone1313Pro1State extends State<Iphone1313Pro1> {
   }
 }
 
-// 내국인
+// 내국인 ->Page4
 Widget _buildButtonWithImage(String imagePath, String regionName, BuildContext context) {
   return SizedBox(
     width: 200,
@@ -518,7 +494,7 @@ class PopupWidget extends StatelessWidget {
                   // Navigator.push(
                   //   context,
                   //   MaterialPageRoute(
-                  //       builder: (context) => Page2()), // 마이페이지로 바꿀 것
+                  //       builder: (context) => Page2()), // 언어값 받아놓기 Shared preferences 이용
                   // );
                   onClose(); // 팝업 닫기
                 },

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kakao_map_plugin/kakao_map_plugin.dart';
 import 'package:http/http.dart' as http;
+import 'package:raon_trip/page4.dart';
 import 'dart:convert';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -141,7 +142,10 @@ class _InfoWidgetState extends State<InfoWidget> {
                         padding: const EdgeInsets.all(8.0),
                         child: ElevatedButton(
                           onPressed: () {
-                            // 해시태그 누르면 넘어갈 곳
+                            String keyword = tag;
+                            Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => Page4(1, 82, keyword, 'ETC')),
+                            );
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: const Color(0xFFE7E7E7),
