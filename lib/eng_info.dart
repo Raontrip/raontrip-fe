@@ -6,13 +6,13 @@ import 'dart:convert';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-class InfoPage extends StatelessWidget {
+class EngInfoPage extends StatelessWidget {
   final String title;
   final int contentId;
   final int lang;
   final String mobileOS;
 
-  InfoPage(this.title, this.contentId, this.lang, this.mobileOS);
+  EngInfoPage(this.title, this.contentId, this.lang, this.mobileOS);
 
   @override
   Widget build(BuildContext context) {
@@ -202,7 +202,7 @@ class _InfoWidgetState extends State<InfoWidget> {
                 child: Row(
                   children: [
                     Text(
-                      '위치 : ',
+                      'Location : ',
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 14,

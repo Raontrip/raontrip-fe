@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:raon_trip/info.dart';
-import 'package:raon_trip/page4.dart';
+import 'package:raon_trip/eng_page4.dart';
 
-class SecondApp extends StatelessWidget {
-  SecondApp({Key? key}) : super(key: key);
+class EngSecondApp extends StatelessWidget {
+  EngSecondApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +67,7 @@ class _SearchFormState extends State<SearchForm> {
                               controller: _searchController,
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(),
-                                labelText: '지역/장소명을 입력하세요',
+                                labelText: 'Please enter region/place name',
                               ))),
                       Positioned(
                         left: 280,
@@ -86,7 +85,7 @@ class _SearchFormState extends State<SearchForm> {
                             }
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => Page4(1, 82, keyword, 'ETC')),
+                              MaterialPageRoute(builder: (context) => EngPage4(1, 1, keyword, 'ETC')),
                             );
                           },
                           icon: const Icon(Icons.search),
@@ -101,7 +100,7 @@ class _SearchFormState extends State<SearchForm> {
                 left: 44,
                 top: 134,
                 child: Text(
-                  '최근 검색 기록',
+                  'Search History',
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 16,
@@ -123,7 +122,7 @@ class _SearchFormState extends State<SearchForm> {
                   ),
                   child: recentSearches.isEmpty
                       ? Text(
-                    '최근 검색어가 없습니다',
+                    'There are no recent search history',
                     style: TextStyle(
                       fontSize: 16,
                       color: Colors.grey,
@@ -140,7 +139,7 @@ class _SearchFormState extends State<SearchForm> {
                               TextButton(
                                 onPressed: () {
                                   Navigator.push(context,
-                                      MaterialPageRoute(builder: (context) => Page4(1, 82, search, 'ETC')));
+                                      MaterialPageRoute(builder: (context) => EngPage4(1, 1, search, 'ETC')));
                                 },
                                 child: Text(
                                   search,

@@ -6,6 +6,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 
 import 'package:flutter/material.dart';
+import 'package:raon_trip/eng_page2.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:raon_trip/page2.dart';
 import 'package:raon_trip/page4.dart';
@@ -25,11 +26,11 @@ List<String> imagePaths = [
 ];
 // 지역 이름 받아오기
 List<String> regionNames = [
-  '로딩중',
-  '로딩중',
-  '로딩중',
-  '로딩중',
-  '로딩중',
+  'LOADING',
+  'LOADING',
+  'LOADING',
+  'LOADING',
+  'LOADING',
 ];
 // 외국인 인기 지역 리스트
 // 이미지 받아오기
@@ -111,8 +112,8 @@ class RankProviders {
   }
 }
 
-class MainTest extends StatelessWidget {
-  const MainTest({super.key});
+class EngMainTest extends StatelessWidget {
+  const EngMainTest({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -122,7 +123,7 @@ class MainTest extends StatelessWidget {
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('라온트립',
+          title: const Text('RaonTrip',
               style: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.w700,
@@ -200,9 +201,9 @@ class _Iphone1313Pro1State extends State<Iphone1313Pro1> {
   int _selectedIndex = 0;
 
   final List<Widget> _widgetOptions = <Widget>[
-    Page2(),
+    EngPage2(),
     MainPage(),
-    Page2(),
+    EngPage2(),
   ];
 
   void _onItemTapped(int index) {
@@ -226,7 +227,7 @@ class _Iphone1313Pro1State extends State<Iphone1313Pro1> {
                 left: 32,
                 top: 48,
                 child: Text(
-                  '외국인 인기 지역',
+                  'Popular Destinations for Foreigners',
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 20,
@@ -239,7 +240,7 @@ class _Iphone1313Pro1State extends State<Iphone1313Pro1> {
                 left: 32,
                 top: 347,
                 child: Text(
-                  '내국인 인기 지역',
+                  'Popular Destinations for Locals',
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 20,
