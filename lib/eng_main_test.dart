@@ -10,6 +10,7 @@ import 'package:raon_trip/eng_page2.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:raon_trip/page2.dart';
 import 'package:raon_trip/page4.dart';
+import 'package:raon_trip/eng_page4.dart';
 import 'main.dart';
 import 'package:kakao_map_plugin/kakao_map_plugin.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -74,8 +75,8 @@ class RankProviders {
   String mainUrl = "http://13.124.208.42:8080/places/rank?";
 
   // Future getRank() async {
-  getRank() async {
-    Uri u = Uri.parse(mainUrl + "size=10");
+  getRank(int lang) async {
+    Uri u = Uri.parse(mainUrl + "lang=$lang&size=10");
     final response = await http.get(u);
 
     if (jsonDecode(response.body)['code'] == 20002) {
@@ -153,7 +154,7 @@ class _Iphone1313Pro1State extends State<Iphone1313Pro1> {
 
   // Future initNews() async {
   initNews() async {
-    await rankProviders.getRank();
+    await rankProviders.getRank(lang);
     await rankProviders.getEngRank(1);
     log("finish"); //이 아래에 로딩 화면 전환이 있어야할 듯함
     return 1;
@@ -329,7 +330,7 @@ Widget _buildButtonWithImage(String imagePath, String regionName, BuildContext c
             onTap: () {
               String keyword = regionName.replaceAll('#', '').split(' ').last;
               Navigator.push(context,
-                MaterialPageRoute(builder: (context) => Page4(1, 82, keyword, 'ETC')),
+                MaterialPageRoute(builder: (context) => EngPage4(1,1, keyword, 'ETC')),
               );
             },
             child: CachedNetworkImage(
@@ -417,7 +418,7 @@ Widget _buildButtonWithImagef(String imagePathf, String regionNamef, BuildContex
             onTap: () {
               String keyword = regionNamef.replaceAll('#', '').split(' ').last;
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => Page4(1, 82, keyword, 'ETC')),
+                  MaterialPageRoute(builder: (context) => EngPage4(1, 1, keyword, 'ETC')),
               );
             },
             child: CachedNetworkImage(

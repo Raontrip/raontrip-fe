@@ -3,6 +3,8 @@ import 'package:kakao_map_plugin/kakao_map_plugin.dart';
 import 'package:http/http.dart' as http;
 import 'package:raon_trip/page4.dart';
 import 'dart:convert';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
@@ -120,19 +122,40 @@ class _InfoWidgetState extends State<InfoWidget> {
               Positioned(
                 left: 35,
                 top: 34,
-                child: Container(
-                  width: MediaQuery.of(context).size.width - 70,
-                  height: 240,
-                  decoration: ShapeDecoration(
-                    image: DecorationImage(
-                      image: NetworkImage(originImg,),
-                      fit: BoxFit.fitWidth, //너비에 맞게 확대 축소
+                  child: CachedNetworkImage(
+                    imageUrl: originImg,
+                    fit: BoxFit.fitWidth,
+                    errorWidget: (context, url, error) {
+                      return ClipRRect(
+                        borderRadius: BorderRadius.circular(20), // 곡률 적용
+                        child: Image.asset(
+                          'assets/images/raontrip.jpg',
+                          width: MediaQuery.of(context).size.width - 70,
+                          height: 240,
+                          fit: BoxFit.fitWidth,
+                        ),
+                      );
+                    },
+                    //placeholder: (context, url) => CircularProgressIndicator(), // 로딩 중에 표시할 위젯
+                    width: MediaQuery.of(context).size.width - 70,
+                    height: 240,
+                    imageBuilder: (context, imageProvider) => Container(
+                      width: MediaQuery.of(context).size.width - 70,
+                      height: 240,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: imageProvider,
+                          fit: BoxFit.fitWidth,
+                        ),
+                        shape: BoxShape.rectangle,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
                     ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
+                    cacheManager: CacheManager(Config(
+                    "fluttercampus",
+                    stalePeriod: const Duration(seconds: 1), //cache로 저장되는 기간 1초로 설정
+                    )),
                   ),
-                ),
               ),
               Positioned(
                   left: 50,

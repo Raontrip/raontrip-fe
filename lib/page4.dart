@@ -4,6 +4,8 @@ import 'package:raon_trip/info.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 
 class Page4 extends StatelessWidget {
   int page;
@@ -155,17 +157,40 @@ class _MyHomePageState extends State<MyHomePage> {
               Positioned(
                   left: 0,
                   top: 0,
-                  child: Container(
+                  child: CachedNetworkImage(
+                    imageUrl: place['thumbnailImg'],
+                    fit: BoxFit.fill,
+                    errorWidget: (context, url, error) {
+                      return ClipRRect(
+                        child: Image.asset(
+                          'assets/images/raontrip.jpg',
+                          width: 100,
+                          height: 100,
+                          fit: BoxFit.fill,
+                        ),
+                        //shape: BoxShape.circle,
+                      );
+                    },
+                    //placeholder: (context, url) => CircularProgressIndicator(), // 로딩 중에 표시할 위젯
                     width: 100,
                     height: 100,
-                    decoration: ShapeDecoration(
-                      image: DecorationImage(
-                        image: NetworkImage(place['thumbnailImg']),
-                        fit: BoxFit.fill,
+                    imageBuilder: (context, imageProvider) => Container(
+                      width: 100,
+                      height: 100,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: imageProvider,
+                          fit: BoxFit.fill,
+                        ),
+                        shape: BoxShape.circle,
                       ),
-                      shape: OvalBorder(),
                     ),
-                  )
+                    cacheManager: CacheManager(Config(
+                      "fluttercampus",
+                      stalePeriod: const Duration(seconds: 1), //cache로 저장되는 기간 1초로 설정
+                      //one week cache period
+                    )),
+                  ),
               ),
               Positioned(
                 left: 113,

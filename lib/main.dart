@@ -5,6 +5,7 @@ import 'package:raon_trip/mypage.dart';
 import 'package:raon_trip/eng_page2.dart';
 import 'package:raon_trip/eng_mypage.dart';
 import 'package:raon_trip/eng_main_test.dart';
+import 'package:flutter/services.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:kakao_map_plugin/kakao_map_plugin.dart';
@@ -14,6 +15,7 @@ void main() async {
   await dotenv.load(fileName: ".env");
   AuthRepository.initialize(appKey: dotenv.env['APP_KEY'] ?? '');
   WidgetsFlutterBinding.ensureInitialized(); // 필요한 초기화 부분입니다.
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   runApp(const MainPage());
 }
 
