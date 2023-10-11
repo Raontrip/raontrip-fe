@@ -128,7 +128,10 @@ class _InfoWidgetState extends State<InfoWidget> {
                       image: NetworkImage(
                         originImg,
                       ),
-                      fit: BoxFit.fitWidth, //너비에 맞게 확대 축소
+                      fit: BoxFit.fitWidth,
+                      onError: (exception, stackTrace) {
+                        Image.asset('assets/images/everland.png');//너비에 맞게 확대 축소
+                      }
                     ),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
