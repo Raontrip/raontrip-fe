@@ -6,7 +6,7 @@
     <application
         android:name="${applicationName}"
         android:icon="@mipmap/ic_raontrip"
-        android:label="raon_trip"
+        android:label="라온트립"
         android:usesCleartextTraffic="true">
 
         <activity

@@ -1,11 +1,11 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
-export "FLUTTER_ROOT=/Users/johyunchol/flutter"
-export "FLUTTER_APPLICATION_PATH=/Users/johyunchol/Documents/workspace/kkensu/kakao_map_plugin/example"
+export "FLUTTER_ROOT=C:\AndroidStudio\3.0.6\flutter"
+export "FLUTTER_APPLICATION_PATH=C:\src\flutterwork\ex2"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
 export "FLUTTER_BUILD_DIR=build"
 export "FLUTTER_BUILD_NAME=1.0.0"
-export "FLUTTER_BUILD_NUMBER=1"
+export "FLUTTER_BUILD_NUMBER=2"
 export "DART_OBFUSCATION=false"
 export "TRACK_WIDGET_CREATION=true"
 export "TREE_SHAKE_ICONS=false"

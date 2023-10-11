@@ -93,7 +93,7 @@ class RankProviders {
 
   // Future getEngRank() async {
   getEngRank(int lang) async {
-    Uri u = Uri.parse(mainUrl + "lang=$lang&size=10  cat");
+    Uri u = Uri.parse(mainUrl + "lang=$lang&size=10");
     final response = await http.get(u);
 
     if (jsonDecode(response.body)['code'] == 20002) {
