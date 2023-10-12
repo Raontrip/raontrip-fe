@@ -418,9 +418,9 @@ Widget _buildButtonWithImagef(String imagePathf, String regionNamef, BuildContex
             imageUrl: imagePathf,
             imageBuilder: (context, imageProvider) => GestureDetector(
               onTap: () {
-                String keyword = regionNamef.replaceAll('#', '').split(' ').last;
+                String keyword = regionNamef.replaceAll('#', '').split(' ').last.split('-').first;
                 Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => EngPage4(1, 1, keyword, 'ETC')),
+                  MaterialPageRoute(builder: (context) => Page4(1, 1, keyword, 'ETC')),
                 );
               },
               child: Container(
