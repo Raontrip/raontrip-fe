@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:http/http.dart' as http;
+import 'package:restart_app/restart_app.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
@@ -538,11 +539,7 @@ class _PopupWidgetState extends State<PopupWidget> {
                   lang = 1;
                   saveLang();
                   widget.onClose(); // 팝업 닫기
-                  Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(
-                      builder: (context) => MainPage(),
-                    ),
-                  );
+                  Restart.restartApp(webOrigin: '[main.dart]');
                 },
                 style: ElevatedButton.styleFrom(
                   primary: Colors.green[900], // Change the button color here
