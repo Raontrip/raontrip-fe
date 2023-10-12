@@ -124,7 +124,17 @@ class _MyHomePageState extends State<MyHomePage> {
         //centerTitle: true, // 중앙 정렬
         elevation: 0.0,
       ),
-      body: ListView.builder(
+      body: places.isEmpty // 만약 검색 결과가 없는 경우
+          ? Center(
+        child: Text(
+          'No Result for $keyword',
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      )
+      : ListView.builder(
         itemExtent: 120.0,
         itemCount: places.length,
         itemBuilder: (context, index) {

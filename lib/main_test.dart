@@ -4,12 +4,13 @@ import 'package:http/http.dart' as http;
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
-
+import 'package:transparent_image/transparent_image.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:raon_trip/page2.dart';
 import 'package:raon_trip/page4.dart';
 import 'package:raon_trip/eng_page4.dart';
+import 'eng_main_test.dart';
 import 'main.dart';
 import 'package:kakao_map_plugin/kakao_map_plugin.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -537,6 +538,11 @@ class _PopupWidgetState extends State<PopupWidget> {
                   lang = 1;
                   saveLang();
                   widget.onClose(); // 팝업 닫기
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (context) => MainPage(),
+                    ),
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   primary: Colors.green[900], // Change the button color here
@@ -553,13 +559,14 @@ class _PopupWidgetState extends State<PopupWidget> {
                 ),
               ),
               const SizedBox(height: 10),
-              ElevatedButton(
-                onPressed: () {
-                  lang = 82;
-                  saveLang();
-                  widget.onClose(); // 팝업 닫기
-                },
-                style: ElevatedButton.styleFrom(
+          ElevatedButton(
+            onPressed: () {
+              lang = 82;
+              saveLang();
+              widget.onClose(); // 팝업 닫기
+            },
+
+          style: ElevatedButton.styleFrom(
                   primary: Colors.green[900], // Change the button color here
                   onPrimary: Colors.white, // Change the text color here
                 ),
