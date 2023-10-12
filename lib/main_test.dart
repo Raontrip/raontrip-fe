@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:raon_trip/page2.dart';
 import 'package:raon_trip/page4.dart';
+import 'package:raon_trip/eng_page4.dart';
 import 'main.dart';
 import 'package:kakao_map_plugin/kakao_map_plugin.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -324,53 +325,53 @@ Widget _buildButtonWithImage(String imagePath, String regionName, BuildContext c
         Positioned(
           left: 0,
           top: 0,
-          child: GestureDetector(
-            onTap: () {
-              String keyword = regionName.replaceAll('#', '').split(' ').last;
-              Navigator.push(context,
-                MaterialPageRoute(builder: (context) => Page4(1, 82, keyword, 'ETC')),
-              );
-            },
-            child: CachedNetworkImage(
-              imageUrl: imagePath,
-              imageBuilder: (context, imageProvider) => Container(
-                width: 200,
-                height: 200,
-                decoration: ShapeDecoration(
-                  image: DecorationImage(
-                    image: imageProvider,
-                    fit: BoxFit.fill,
-                    colorFilter: ColorFilter.mode(
-                      Colors.white.withOpacity(0.5), // 투명도
-                      BlendMode.dstATop,
+          child: CachedNetworkImage(
+            imageUrl: imagePath,
+            imageBuilder: (context, imageProvider) => GestureDetector(
+                onTap: () {
+                  String keyword = regionName.replaceAll('#', '').split(' ').last;
+                  Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Page4(1, 82, keyword, 'ETC')),
+                  );
+                },
+                child: Container(
+                  width: 200,
+                  height: 200,
+                  decoration: ShapeDecoration(
+                    image: DecorationImage(
+                      image: imageProvider,
+                      fit: BoxFit.fill,
+                      colorFilter: ColorFilter.mode(
+                        Colors.white.withOpacity(0.5), // 투명도
+                        BlendMode.dstATop,
+                      ),
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
                     ),
                   ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
                 ),
-              ),
-              errorWidget: (context, url, error) => Container(
-                width: 200,
-                height: 200,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/images/raontrip.jpg'),
-                    fit: BoxFit.cover, // 이미지가 칸 안에 꽉 채우도록 설정
-                    colorFilter: ColorFilter.mode(
-                      Colors.white.withOpacity(0.5), // 대체 이미지에도 투명도 적용
-                      BlendMode.dstATop,
-                    ),
-                  ),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-              ),
-              cacheManager: CacheManager(Config(
-                "fluttercampus",
-                stalePeriod: const Duration(days: 1), //cache로 저장되는 기간 1일로 설정
-                //one week cache period
-              )),
             ),
+            errorWidget: (context, url, error) => Container(
+              width: 200,
+              height: 200,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/images/raontrip.jpg'),
+                  fit: BoxFit.cover, // 이미지가 칸 안에 꽉 채우도록 설정
+                  colorFilter: ColorFilter.mode(
+                    Colors.white.withOpacity(0.5), // 대체 이미지에도 투명도 적용
+                    BlendMode.dstATop,
+                  ),
+                ),
+                borderRadius: BorderRadius.circular(20),
+              ),
+            ),
+            cacheManager: CacheManager(Config(
+              "fluttercampus",
+              stalePeriod: const Duration(days: 1), //cache로 저장되는 기간 1일로 설정
+              //one week cache period
+            )),
           ),
         ),
         Positioned(
@@ -412,16 +413,16 @@ Widget _buildButtonWithImagef(String imagePathf, String regionNamef, BuildContex
         Positioned(
           left: 0,
           top: 0,
-          child: GestureDetector(
-            onTap: () {
-              String keyword = regionNamef.replaceAll('#', '').split(' ').last;
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => Page4(1, 82, keyword, 'ETC')),
-              );
-            },
-            child: CachedNetworkImage(
-              imageUrl: imagePathf,
-              imageBuilder: (context, imageProvider) => Container(
+          child: CachedNetworkImage(
+            imageUrl: imagePathf,
+            imageBuilder: (context, imageProvider) => GestureDetector(
+              onTap: () {
+                String keyword = regionNamef.replaceAll('#', '').split(' ').last;
+                Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => EngPage4(1, 1, keyword, 'ETC')),
+                );
+              },
+              child: Container(
                 width: 200,
                 height: 200,
                 decoration: ShapeDecoration(
@@ -438,27 +439,27 @@ Widget _buildButtonWithImagef(String imagePathf, String regionNamef, BuildContex
                   ),
                 ),
               ),
-              errorWidget: (context, url, error) => Container(
-                width: 200,
-                height: 200,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/images/raontrip.jpg'),
-                    fit: BoxFit.cover, // 이미지가 칸 안에 꽉 채우도록 설정
-                    colorFilter: ColorFilter.mode(
-                      Colors.white.withOpacity(0.5), // 대체 이미지에도 투명도 적용
-                      BlendMode.dstATop,
-                    ),
-                  ),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-              ),
-              cacheManager: CacheManager(Config(
-                "fluttercampus",
-                stalePeriod: const Duration(days: 1), //cache로 저장되는 기간 1일로 설정
-                //one week cache period
-              )),
             ),
+            errorWidget: (context, url, error) => Container(
+              width: 200,
+              height: 200,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/images/raontrip.jpg'),
+                  fit: BoxFit.cover, // 이미지가 칸 안에 꽉 채우도록 설정
+                  colorFilter: ColorFilter.mode(
+                    Colors.white.withOpacity(0.5), // 대체 이미지에도 투명도 적용
+                    BlendMode.dstATop,
+                  ),
+                ),
+                borderRadius: BorderRadius.circular(20),
+              ),
+            ),
+            cacheManager: CacheManager(Config(
+              "fluttercampus",
+              stalePeriod: const Duration(days: 1), //cache로 저장되는 기간 1일로 설정
+              //one week cache period
+            )),
           ),
         ),
         Positioned(
